@@ -6,6 +6,7 @@ kind of boilerplate
 * server side render
 * react-loadable - component based code splitting
 * react-helmet
+* Redis Oplog
 * postcss with autoprefixer
 * materializecss (template bootstrap)
 * eslint (coding styles)
@@ -15,9 +16,10 @@ kind of boilerplate
 - Go inside the cloned directory
 - Remove the `.git` directory: `rm -rf .git`
 - Install npm libraries: `meteor npm install`
+- Setup Redis server
 - Run the meteor app: `meteor npm start`
 
 I created a `/test` page to test a couple of useful stuffs.
 
 ## demo
-http://meteor-ssr-loadable.minhnguyen.me/
+http://meteor-ssr-redis.minhnguyen.me/
