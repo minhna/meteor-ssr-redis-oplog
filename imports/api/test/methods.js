@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
+
 import Tests from './tests.js';
 
 Meteor.methods({
@@ -32,3 +34,9 @@ Meteor.methods({
     return 'finished';
   },
 });
+
+const testInsertRule = {
+  type: 'method',
+  name: 'test.insert',
+};
+DDPRateLimiter.addRule(testInsertRule, 2, 10000);
