@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import moment from 'moment';
 
 import Tests from '/imports/api/test/tests.js';
 
@@ -35,14 +36,11 @@ class TestSimpleSchema extends Component {
     return data.map(item =>
       (
         <div key={item._id} className="row">
-          <div className="col s4">
+          <div className="col s6 m4">
             {item._id}
           </div>
-          <div className="col s4">
-            {item.title}
-          </div>
-          <div className="col s4">
-            {item.body}
+          <div className="col s6 m8">
+            {moment(item.createdAt).format('DD-MM-YY HH:mm:ss')}
           </div>
         </div>
       ));
@@ -95,7 +93,7 @@ export default withTracker(() => {
     testSub = Meteor.subscribe('tests.all', {});
   }
   if (Meteor.isServer || (testSub && testSub.ready())) {
-    returnObj.data = Tests.find({}).fetch();
+    returnObj.data = Tests.find({}, { sort: { createdAt: -1 } }).fetch();
     returnObj.loading = false;
   }
 

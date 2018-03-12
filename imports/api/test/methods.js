@@ -23,7 +23,9 @@ Meteor.methods({
     const validationContext = Tests.schema.newContext();
     validationContext.validate(data);
     if (validationContext.isValid()) {
-      Tests.insert(data);
+      const data2 = data;
+      data2.createdAt = new Date();
+      Tests.insert(data2);
     } else {
       // do something
       const errors = validationContext.validationErrors().map(elm => `${elm.name} is ${elm.type}, actual value: ${elm.value}`);
